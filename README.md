@@ -285,7 +285,7 @@ frontend/index.html
 
 ## Resources
 * [GitHub Repository](https://github.com/mekyto/FlowProof-Solana)
-* [Video Demo]((https://www.loom.com/share/e5fe4409113f48088e9003b3f53d3ef7))
+* [Video Demo](https://www.loom.com/share/e5fe4409113f48088e9003b3f53d3ef7)
 * [Speech demo](https://www.loom.com/share/087706b9d4f44ff1a99b48fb0322afd9)
 * [Colosseum Submission](https://colosseum.com/arena/projects/flowproof)
 
