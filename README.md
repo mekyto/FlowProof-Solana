@@ -276,7 +276,7 @@ frontend/index.html
 * [x] USDC financing workflow
 * [x] Invoice settlement
 * [x] DeFi marketplace prototype
-* [ ] Public deployment
+* [x] Public deployment
 * [ ] Accounting / ERP integrations
 * [ ] Advanced privacy and selective disclosure
 * [ ] Mainnet deployment
