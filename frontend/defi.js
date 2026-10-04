@@ -266,6 +266,15 @@ async function fundDefi(proofId) {
         const issuer = new solanaWeb3.PublicKey(item.issuer);
         const investor = provider.publicKey;
 
+        const DEMO_INVESTOR =
+            "3cFpgRpA33YqTzsVg9uwUjpHKCDTdxCqQs68FUCdtERF";
+
+        if (investor.toBase58() !== DEMO_INVESTOR) {
+            throw new Error(
+                "Connect the Investor wallet to fund this invoice."
+            );
+        }
+
         const ix = new solanaWeb3.TransactionInstruction({
             programId,
             keys: [
@@ -304,6 +313,13 @@ async function payDefi() {
         }
 
         const d = data.proof.defi;
+
+        if (d.payer !== provider.publicKey.toBase58()) {
+            throw new Error(
+                "Only the invoice receiver/payer can pay this invoice."
+            );
+        }
+
         const programId = new solanaWeb3.PublicKey(cfg.programId);
         const mint = new solanaWeb3.PublicKey(cfg.usdcMint);
         const payer = provider.publicKey;

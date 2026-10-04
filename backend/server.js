@@ -1300,9 +1300,25 @@ app.post("/api/defi/sync", async (req, res) => {
 
 app.get("/api/defi/market", (req, res) => {
     const now = Math.floor(Date.now() / 1000);
+    const seen = new Set();
 
     const items = readProofs()
-        .filter(p => p.defi && p.defi.status === "Open" && p.defi.dueAt > now)
+        .filter(p =>
+            p.defi &&
+            p.defi.status === "Open" &&
+            p.defi.dueAt > now
+        )
+        .filter(p => {
+            // Only one active financing listing per invoice ID.
+            const key = String(p.invoice.invoiceId).trim().toLowerCase();
+
+            if (seen.has(key)) {
+                return false;
+            }
+
+            seen.add(key);
+            return true;
+        })
         .map(p => ({
             proofId: p.proofId,
             invoiceId: p.invoice.invoiceId,
@@ -1312,12 +1328,20 @@ app.get("/api/defi/market", (req, res) => {
             amount: p.defi.amount / 1e6,
             advance: p.defi.advance / 1e6,
             discountBps: p.defi.discountBps,
-            yieldPct: Math.round((p.defi.amount - p.defi.advance) / p.defi.advance * 10000) / 100,
+            yieldPct:
+                Math.round(
+                    (p.defi.amount - p.defi.advance) /
+                    p.defi.advance *
+                    10000
+                ) / 100,
             riskScore: p.defi.riskScore,
             dueAt: p.defi.dueAt
         }));
 
-    res.json({ success: true, items });
+    res.json({
+        success: true,
+        items
+    });
 });
 
 app.get("/api/analytics", (req, res) => {
