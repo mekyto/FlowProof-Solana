@@ -6,8 +6,7 @@
 
 **AI understands. Cryptography proves. Solana verifies. DeFi provides liquidity.**
 
-[GitHub](https://github.com/mekyto/FlowProof-Solana) · Live Demo · Video Walkthrough · Colosseum Submission
-
+[GitHub](https://github.com/mekyto/FlowProof-Solana) · [Live Demo](https://www.loom.com/share/e5fe4409113f48088e9003b3f53d3ef7) · [Video Walkthrough](https://www.loom.com/share/087706b9d4f44ff1a99b48fb0322afd9) · [Colosseum Submission](https://colosseum.com/arena/projects/flowproof)
 ---
 
 # FlowProof — Verifiable Invoice Financing on Solana
