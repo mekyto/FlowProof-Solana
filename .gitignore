@@ -1,0 +1,23 @@
+# Secrets
+API.env
+.env
+backend/API.env
+backend/.env
+
+# Dependencies
+node_modules/
+backend/node_modules/
+
+# Local backend data
+backend/proofs.json
+backend/checks.json
+backend/invoices.json
+
+# Anchor build artifacts
+anchor/target/
+
+# Logs
+*.log
+
+# macOS
+.DS_Store

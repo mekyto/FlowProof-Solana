@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FlowProof</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <a href="#" class="logo">
+            <span class="logo-mark"></span>
+            FlowProof
+        </a>
+
+        <nav class="nav-links">
+            <a href="#verify">Verify</a>
+            <a href="#search">Find Proof</a>
+            <a href="#defi-section">DeFi</a>
+            <a href="#dashboard-section">Analytics</a>
+            <a href="#check">Check</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <div class="nav-right">
+
+            <div class="network">
+                <span class="network-dot"></span>
+                Solana Devnet
+            </div>
+
+            <button
+                id="walletButton"
+                class="wallet-button"
+                type="button"
+                onclick="connectWallet()">
+                Connect Wallet
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-glow"></div>
+
+            <div class="eyebrow">
+                <span></span>
+                BUILT FOR SOLANA
+            </div>
+
+            <h1>
+                Proof for every
+                <span>transaction.</span>
+            </h1>
+
+            <p>
+                Create verifiable invoice proofs, generate
+                cryptographic hashes, and anchor your records
+                on Solana.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#verify"
+                    class="button primary-button">
+                    Create Proof
+                    <span>→</span>
+                </a>
+
+                <a
+                    href="#search"
+                    class="button secondary-button">
+                    Find Existing Proof
+                </a>
+
+            </div>
+
+            <div class="hero-status">
+        <span class="status-dot"></span>
+        <span id="heroStatusText">Checking network...</span>
+        <span class="separator">•</span>
+        Solana Devnet
+    </div>
+
+        </section>
+
+
+        <!-- STATS -->
+
+        <section class="stats">
+
+            <div class="stat">
+                <strong>SHA-256</strong>
+                <span>Cryptographic proof</span>
+            </div>
+
+            <div class="stat">
+                <strong>Solana</strong>
+                <span>Blockchain layer</span>
+            </div>
+
+            <div class="stat">
+                <strong>Devnet</strong>
+                <span>Test environment</span>
+            </div>
+
+            <div class="stat">
+                <strong>Phantom</strong>
+                <span>Wallet supported</span>
+            </div>
+
+        </section>
+
+
+        <!-- CREATE PROOF -->
+
+        <section id="verify" class="section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-number">
+                        01
+                    </div>
+
+                    <h2>Create a proof</h2>
+
+                    <p>
+                        Turn an invoice into a verifiable
+                        digital record.
+                    </p>
+
+                </div>
+
+                <div class="section-label">
+                    CREATE
+                </div>
+
+            </div>
+
+
+            <div class="card ai-card">
+                <span class="card-kicker">AI INTAKE</span>
+                <h3>Drop an invoice, AI does the rest</h3>
+                <textarea id="aiText" placeholder="Paste invoice text, an email or a message. Or attach a PDF or image below."></textarea>
+                <div class="ai-row">
+                    <input id="aiFile" type="file" accept="image/*,application/pdf,.txt,.md,.csv,.json,text/plain">
+                    <button class="primary-action" type="button" onclick="aiIntake()">Analyze with AI <span class="arrow">→</span></button>
+                </div>
+                <div id="aiIntakeResult"></div>
+            </div>
+
+            <div class="workspace">
+
+                <!-- FORM -->
+
+                <div class="card form-card">
+
+                    <div class="card-top">
+
+                        <div>
+
+                            <span class="card-kicker">
+                                INVOICE DATA
+                            </span>
+
+                            <h3>
+                                Verification details
+                            </h3>
+
+                        </div>
+
+                        <div class="card-icon">
+                            +
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group full">
+
+                            <label for="invoiceId">
+                                Invoice ID
+                            </label>
+
+                            <input
+                                id="invoiceId"
+                                type="text"
+                                placeholder="INV-2026-001">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="sender">
+                                Sender
+                            </label>
+
+                            <input
+                                id="sender"
+                                type="text"
+                                placeholder="Company / Wallet">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="receiver">
+                                Receiver
+                            </label>
+
+                            <input
+                                id="receiver"
+                                type="text"
+                                placeholder="Company / Wallet">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="amount">
+                                Amount
+                            </label>
+
+                            <input
+                                id="amount"
+                                type="number"
+                                min="0"
+                                max="1000000000000"
+                                step="0.01"
+                                placeholder="1000">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="currency">
+                                Currency
+                            </label>
+
+                            <select id="currency">
+
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="KZT">KZT</option>
+                                <option value="SOL">SOL</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label for="description">
+                                Description
+                            </label>
+
+                            <textarea
+                                id="description"
+                                placeholder="Optional invoice description..."></textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="private-toggle"><input id="privateMode" type="checkbox"> Private mode: hide invoice data, store salted commitment only</label>
+
+
+                    <button
+                        class="primary-action"
+                        type="button"
+                        onclick="verifyInvoice()">
+
+                        Generate Proof
+
+                        <span class="arrow">→</span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- RESULT -->
+
+                <div class="card result-card">
+
+                    <div class="card-top">
+
+                        <div>
+
+                            <span class="card-kicker">
+                                PROOF OUTPUT
+                            </span>
+
+                            <h3>
+                                Verification result
+                            </h3>
+
+                        </div>
+
+                        <div class="live-indicator">
+                            <span></span>
+                            LIVE
+                        </div>
+
+                    </div>
+
+
+                    <div id="result" class="empty-result">
+
+                        <div class="empty-icon">
+                            ◇
+                        </div>
+
+                        <h3>
+                            No proof generated
+                        </h3>
+
+                        <p>
+                            Enter invoice information and
+                            generate a cryptographic proof.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH -->
+
+        <section
+            id="search"
+            class="section search-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-number">
+                        02
+                    </div>
+
+                    <h2>
+                        Find a proof
+                    </h2>
+
+                    <p>
+                        Verify an existing FlowProof record.
+                    </p>
+
+                </div>
+
+                <div class="section-label">
+                    VERIFY
+                </div>
+
+            </div>
+
+
+            <div class="search-card">
+
+                <div class="search-input-wrapper">
+
+                    <span class="search-icon">
+                        ⌕
+                    </span>
+
+                    <input
+                        id="searchProofId"
+                        type="text"
+                        placeholder="Enter Proof ID">
+
+                </div>
+
+                <button
+                    class="search-button"
+                    type="button"
+                    onclick="findProof()">
+                    Search Proof
+                </button>
+
+            </div>
+
+
+            <div
+                id="foundProof"
+                class="found-proof">
+            </div>
+
+        </section>
+
+
+        <!-- CHECK DOCUMENT -->
+
+        <section id="check" class="section">
+    <div class="section-heading">
+        <div>
+            <div class="section-number">03</div>
+            <h2>Check a document</h2>
+            <p>Compare an invoice with its original proof.</p>
+        </div>
+        <div class="section-label">INTEGRITY</div>
+    </div>
+
+    <div class="card form-card">
+        <div class="form-grid">
+            <div class="form-group full">
+                <label for="checkProofId">Proof ID</label>
+                <input id="checkProofId" type="text" placeholder="FP-XXXXXXXXXX">
+            </div>
+            <div class="form-group full">
+                <label for="checkSalt">Salt (private proofs only)</label>
+                <input id="checkSalt" type="text">
+            </div>
+            <div class="form-group">
+                <label for="checkInvoiceId">Invoice ID</label>
+                <input id="checkInvoiceId" type="text">
+            </div>
+            <div class="form-group">
+                <label for="checkSender">Sender</label>
+                <input id="checkSender" type="text">
+            </div>
+            <div class="form-group">
+                <label for="checkReceiver">Receiver</label>
+                <input id="checkReceiver" type="text">
+            </div>
+            <div class="form-group">
+                <label for="checkAmount">Amount</label>
+                <input id="checkAmount" type="number" min="0" max="1000000000000" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="checkCurrency">Currency</label>
+                <select id="checkCurrency">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="KZT">KZT</option>
+                    <option value="SOL">SOL</option>
+                </select>
+            </div>
+            <div class="form-group full">
+                <label for="checkDescription">Description</label>
+                <textarea id="checkDescription"></textarea>
+            </div>
+        </div>
+        <button class="primary-action" type="button" onclick="checkDocument()">
+            Check Document
+            <span class="arrow">→</span>
+        </button>
+    </div>
+
+    <div class="card ai-card">
+        <span class="card-kicker">AI AUTO-CHECK</span>
+        <h3>Upload a document, no Proof ID needed</h3>
+        <textarea id="aiCheckText" placeholder="Paste the invoice text, or attach a PDF or image."></textarea>
+        <div class="ai-row">
+            <input id="aiCheckFile" type="file" accept="image/*,application/pdf,.txt,.md,.csv,.json,text/plain">
+            <button class="primary-action" type="button" onclick="aiAutoCheck()">Verify automatically <span class="arrow">→</span></button>
+        </div>
+    </div>
+
+    <div id="checkResult" class="found-proof"></div>
+</section>
+
+        <section id="dashboard-section" class="section">
+            <div class="section-heading">
+                <div>
+                    <div class="section-number">&Sigma;</div>
+                    <h2>Analytics dashboard</h2>
+                    <p>Live proof activity and Solana network metrics.</p>
+                </div>
+                <div class="section-label">ANALYTICS</div>
+            </div>
+            <div id="dashboard" class="dashboard"></div>
+        </section>
+
+        <section id="defi-section" class="section">
+            <div class="section-heading">
+                <div>
+                    <div class="section-number">$</div>
+                    <h2>Invoice financing</h2>
+                    <p>Verified invoices become receivables. Investors advance USDC, the payer settles on-chain.</p>
+                </div>
+                <div class="section-label">DEFI</div>
+            </div>
+
+            <div class="dash-row">
+                <div class="card ai-card">
+                    <span class="card-kicker">ISSUER</span>
+                    <h3>Publish a proof for financing</h3>
+                    <input id="defiProofId" type="text" placeholder="Proof ID (FP-...)">
+                    <input id="defiPayer" type="text" placeholder="Payer wallet (auto-filled if the receiver is a wallet)">
+                    <div class="ai-row">
+                        <button class="search-button" type="button" onclick="quoteDefi()">Get quote</button>
+                        <button class="primary-action" type="button" onclick="publishDefi()">Publish on-chain <span class="arrow">→</span></button>
+                    </div>
+                </div>
+
+                <div class="card ai-card">
+                    <span class="card-kicker">PAYER</span>
+                    <h3>Pay an invoice</h3>
+                    <input id="defiPayId" type="text" placeholder="Proof ID (FP-...)">
+                    <button class="primary-action" type="button" onclick="payDefi()">Pay with USDC <span class="arrow">→</span></button>
+                </div>
+            </div>
+
+            <div class="card ai-card">
+                <span class="card-kicker">INVESTOR MARKETPLACE</span>
+                <div id="defiMarket"></div>
+            </div>
+
+            <div id="defiResult" class="found-proof"></div>
+        </section>
+
+        <section id="intel-section" class="section">
+            <div class="section-heading">
+                <div>
+                    <div class="section-number">AI</div>
+                    <h2>Risk intelligence</h2>
+                    <p>Anomaly scoring, forecasting and AI insights.</p>
+                </div>
+                <div class="section-label">INTELLIGENCE</div>
+            </div>
+            <div class="card ai-card">
+                <span class="card-kicker">AI INSIGHTS</span>
+                <button class="primary-action" type="button" onclick="loadInsights()">Generate AI insights <span class="arrow">→</span></button>
+                <div id="aiInsights"></div>
+            </div>
+            <div id="intel" class="dashboard"></div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+
+        <section
+            id="about"
+            class="section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-number">
+                        04
+                    </div>
+
+                    <h2>
+                        How FlowProof works
+                    </h2>
+
+                    <p>
+                        A verification layer for digital records.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Create
+                    </h3>
+
+                    <p>
+                        Submit invoice information through
+                        the FlowProof interface.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Hash
+                    </h3>
+
+                    <p>
+                        FlowProof generates a SHA-256
+                        fingerprint for the record.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Anchor
+                    </h3>
+
+                    <p>
+                        The proof can be signed through
+                        Phantom and anchored to Solana.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Verify
+                    </h3>
+
+                    <p>
+                        Anyone with the Proof ID can
+                        inspect the verification record.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <a href="#" class="logo">
+                <span class="logo-mark"></span>
+                FlowProof
+            </a>
+
+            <p>
+                Verifiable records. Cryptographic proof.
+                Solana infrastructure.
+            </p>
+
+            <span class="footer-network">
+                ● SOLANA DEVNET
+            </span>
+
+        </div>
+
+    </footer>
+
+    <button id="assistantToggle" class="assistant-toggle" type="button" onclick="toggleAssistant()">✦ AI Assistant</button>
+    <div id="assistantPanel" class="assistant-panel">
+        <div class="assistant-head"><span>FlowProof AI</span><button type="button" onclick="toggleAssistant()">×</button></div>
+        <div id="assistantMessages" class="assistant-messages">
+            <div class="msg assistant">Ask about proofs, risks and trends, or tell me to create a proof.</div>
+        </div>
+        <div class="assistant-chips">
+            <button type="button" onclick="sendPrompt('What looks suspicious right now?')">Suspicious?</button>
+            <button type="button" onclick="sendPrompt('Summarize activity and trends')">Summary</button>
+            <button type="button" onclick="sendPrompt('Which counterparties carry the most risk?')">Counterparties</button>
+        </div>
+        <div class="assistant-input">
+            <input id="assistantInput" type="text" placeholder="Ask or give a command..." onkeydown="if(event.key==='Enter')sendAssistant()">
+            <button type="button" onclick="sendAssistant()">→</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.98.4/lib/index.iife.min.js"></script>
+    <script src="./script.js"></script>
+    <script src="./defi.js"></script>
+
+</body>
+
+</html>
