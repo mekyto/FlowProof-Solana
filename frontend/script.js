@@ -1,6 +1,6 @@
 let connectedWallet = null;
 
-const API_URL = "http://localhost:3000";
+const API_URL = "https://flowproof-solana.onrender.com";
 const MEMO_PROGRAM_ID = "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr";
 
 
