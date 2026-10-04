@@ -1,5 +1,8 @@
 # FlowProof — Verifiable Invoice Financing on Solana
 
+[![CI](https://github.com/mekyto/FlowProof-Solana/actions/workflows/ci.yml/badge.svg)](https://github.com/mekyto/FlowProof-Solana/actions/workflows/ci.yml)
+
+
 [Solana](https://solana.com/) · [Anchor](https://www.anchor-lang.com/) · [Devnet](https://solana.com/docs/references/clusters) · [Colosseum](https://www.colosseum.org/)
 
 > Turn real-world invoices into **verifiable on-chain financial claims** and connect invoice verification with DeFi financing.
