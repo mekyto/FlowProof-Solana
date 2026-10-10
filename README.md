@@ -148,7 +148,7 @@ FlowProof uses an Anchor program deployed on Solana Devnet.
 **Program ID:**
 
 ```text
-HZ1EBuiSJeW2MRS8pvD7r5fTJoCRPgWDyE9iEnPZ5b
+HZ1EBuiSJeW2MRS8pvD7r5fTJoCRPgWDyE9Ei2EnPZ5b
 ```
 
 The program currently supports:
